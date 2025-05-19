@@ -1,3 +1,6 @@
+Notes:
+Add hyperfine on dependencies
+
 # BenchGen Artifacts
 
 ## Introduction  
@@ -17,6 +20,9 @@ This repository contains two directories: `data` and `src`.
 
 ## Installing Dependencies
 
+
+#### *To run the artifacts manually, we recommend using Ubuntu 22.04.*
+
 Update repositories:
 ```bash
 apt update -y
@@ -31,7 +37,7 @@ apt install build-essential -y
 Install additional required dependencies:
 
 ```bash
-apt install git lsb-release wget software-properties-common gnupg python3 python3-pip -y
+apt install git lsb-release wget software-properties-common hyperfine python-is-pyton3 gnupg python3 python3-pip -y
 ```
 
 Install LLVM by first downloading the installation script:
@@ -77,7 +83,7 @@ tar -xf gcc-14.1.0.tar.gz && cd gcc-14.1.0
 ```
 
 ```bash
-./configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --prefix=/usr/local/gcc-14.1.0 --enable-checking=release --enable-languages=c,c++ --disable-multilib --program-suffix=-14.1.0
+./configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu --prefix=/usr/local/gcc-14.1.0 --enable-checking=release --enable-languages=c,c++ --disable-multilib --program-suffix=-14
 ```
 
 ```bash
@@ -87,6 +93,11 @@ make
 ```bash
 make install
 ```
+
+```bash
+export PATH=$PATH:/usr/local/gcc-14.1.0/bin
+```
+
 ## Preliminary Setup
 
 Set the artifact root directory and BenchGen directory:
@@ -139,44 +150,17 @@ mv /tmp/asymptotic_behavior.csv $ARTIFACT_ROOT_DIR/data/
 
 ## Running Artifacts with Docker:
 
-### 'Compilers Comparison' Artifact
 
-Build the container image:
+Building container image:
 
 ```bash
-docker build -t compilers_comparison $ARTIFACT_ROOT_DIR/src/artifact_1/
+docker build -t lgen_experiments .
 ```
 
-Create the container:
+Creating container:
 
 ```bash
-docker run -it --name a1_compilers_comparison compilers_comparison
-```
-
-Copy the results:
-
-```bash
-docker cp a1_compilers_comparison:/tmp/compilers_comparison.csv $ARTIFACT_ROOT_DIR/data/
-```
-
-## 'Asymptotic Behavior' Artifact
-
-Build the container image:
-
-```bash
-docker build -t asymptotic_behavior $ARTIFACT_ROOT_DIR/src/artifact_2/
-```
-
-Create the container:
-
-```bash
-docker run -it --name a2_asymptotic_behavior asymptotic_behavior
-```
-
-Copy the results:
-
-```bash
-docker cp a2_asymptotic_behavior:/tmp/asymptotic_behavior.csv $ARTIFACT_ROOT_DIR/data/
+docker run --name lgen -p 8888:8888 lgen_experiments
 ```
 
 ## Data Analysis
