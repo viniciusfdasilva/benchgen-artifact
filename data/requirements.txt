@@ -1,7 +1,6 @@
 pandas
 seaborn
 matplotlib
-adjust_text
+adjustText
 jupyter
-sklearn
-mpl_toolkits
+scikit-learn
