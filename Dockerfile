@@ -33,7 +33,7 @@ RUN ./llvm.sh $LLVM_VERSION
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && apt update -y
 
-RUN apt install gcc-14 gcc++-14 -y
+RUN apt install gcc-14 g++-14 -y
 
 # Define o diretório de trabalho dentro d  o container
 WORKDIR $ARTIFACT_DIR
