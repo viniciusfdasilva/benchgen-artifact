@@ -18,11 +18,11 @@ CLANG_VERSION = 21
 RUN = 2
 
 # Variáveis de ambiente com base na versão do Clang
-CC   = f'/usr/bin/clang-{CLANG_VERSION}'
-OPT  = f'/usr/bin/opt-{CLANG_VERSION}'
-LLC  = f'/usr/bin/llc-{CLANG_VERSION}'
-LINK = f'/usr/bin/llvm-link-{CLANG_VERSION}'
-DIS  = f'/usr/bin/llvm-dis-{CLANG_VERSION}'
+CC   = f'clang-{CLANG_VERSION}'
+OPT  = f'opt-{CLANG_VERSION}'
+LLC  = f'llc-{CLANG_VERSION}'
+LINK = f'llvm-link-{CLANG_VERSION}'
+DIS  = f'llvm-dis-{CLANG_VERSION}'
 
 # Gramáticas utilizadas nos experimentos
 grammar_ids = ['ex7'] # 'ex8', ex9', 'ex6'] Pode adicionar outros programas na lista

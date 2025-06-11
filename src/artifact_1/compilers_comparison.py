@@ -15,7 +15,7 @@ GCC_VERSION   = 14
 CLANG_VERSION = 21
 
 # Lista de compiladores com as versões especificadas
-compilers = [f'/usr/local/gcc-{GCC_VERSION}/bin/gcc-{GCC_VERSION}', f'/usr/bin/clang-{CLANG_VERSION}']
+compilers = [f'gcc-{GCC_VERSION}', f'clang-{CLANG_VERSION}']
 
 # Otimizações a serem testadas
 opts = ['-O0','-O1','-O2','-O3', '-Os', '-O3 -ffast-math' if CLANG_VERSION >= 21 else '-Ofast']
@@ -168,7 +168,7 @@ def main(benchGen_root_path, execution_warmup, number_of_executions):
         grammar_name = program_path.split("_")[-1].strip()
 
         for compiler in compilers:
-            for opt in opts if compiler == f"/usr/local/gcc-{GCC_VERSION}/bin/gcc-{GCC_VERSION}" else opts + ["-Oz"]:
+            for opt in opts if compiler == f"gcc-{GCC_VERSION}" else opts + ["-Oz"]:
                 compiling_cmd = f'{compiler} {opt} src/*.c src/*.h'
 
                 get_compilation_time(compiling_cmd, grammar_name)
