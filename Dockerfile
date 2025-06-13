@@ -52,10 +52,10 @@ RUN git clone --branch main https://github.com/lac-dcc/BenchGen.git
 RUN make -C $BENCHGEN_DIR/src/gen/ CC=clang++-$LLVM_VERSION
 
 # Executa o script Python (presumivelmente para gerar ou processar benchmarks)
-RUN python $ARTIFACT_DIR/src/artifact_1/compilers_comparison.py $ARTIFACT_DIR/BenchGen
+RUN $ARTIFACT_DIR/venv/bin/python $ARTIFACT_DIR/src/artifact_1/compilers_comparison.py $ARTIFACT_DIR/BenchGen
 
 # Executa o script Python (presumivelmente para gerar ou processar benchmarks)
-RUN python $ARTIFACT_DIR/src/artifact_2/asymptotic_behavior.py $ARTIFACT_DIR/BenchGen
+RUN $ARTIFACT_DIR/venv/bin/python $ARTIFACT_DIR/src/artifact_2/asymptotic_behavior.py $ARTIFACT_DIR/BenchGen
 
 # Move os csvs para a pasta de análise 
 RUN mv /tmp/*.csv $ARTIFACT_DIR/data/

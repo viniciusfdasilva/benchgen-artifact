@@ -2,5 +2,6 @@ pandas
 seaborn
 matplotlib
 adjustText
+scipy
 jupyter
 scikit-learn
