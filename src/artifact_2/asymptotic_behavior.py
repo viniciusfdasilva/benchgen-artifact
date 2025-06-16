@@ -1,10 +1,8 @@
 # ---------------------------------------------------------------------------------
 # Nome do Arquivo : asymptotic_behavior.py
-# Autor           : Vinicius Silva
 # Descrição       : Script para gerar benchmarks para fazer
 #                   análise assintórica de características LLVM
 #                   usando o gerador de programas BenchGen.
-# Data de Criação : 09/05/2025
 # Versão          : 1.0
 # ---------------------------------------------------------------------------------
 
