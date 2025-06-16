@@ -160,7 +160,7 @@ docker build -t lgen_experiments .
 Creating container:
 
 ```bash
-docker run --name lgen -p 8888:8888 lgen_experiments
+docker run --name lgen -p 8888:8888 -d lgen_experiments
 ```
 
 ## Data Analysis
