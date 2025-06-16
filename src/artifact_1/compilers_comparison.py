@@ -1,10 +1,8 @@
 # ---------------------------------------------------------------------------------
 # Nome do Arquivo : compilers_comparison.py
-# Autor           : Vinicius Silva
 # Descrição       : Script para gerar benchmarks e comparar compiladores
 #                   GCC e Clang com diferentes otimizações, utilizando o
 #                   gerador de programas BenchGen.
-# Data de Criação : 09/05/2025
 # Versão          : 1.0
 # ---------------------------------------------------------------------------------
 
