@@ -27,7 +27,7 @@ iterations = [8, 10]
 EXECUTION_WARMUP = 2
 NUMBER_OF_EXECUTIONS = 2
 
-csv_data = [['binary_size','time_of_compilation','time_of_execution','opt','compiler','program','data_structure','iterations']]
+csv_data = [['binary_size','compilation_time','execution_time','opt','compiler','program','data_structure','iterations']]
 
 def generate_csv():
     """Gera o arquivo CSV com os dados coletados."""
