@@ -154,7 +154,7 @@ mv /tmp/asymptotic_behavior.csv $ARTIFACT_ROOT_DIR/data/
 Building container image:
 
 ```bash
-docker build -t lgen_experiments .
+docker build -t lgen_experiments . --no-cache
 ```
 
 Creating container:
