@@ -178,7 +178,7 @@ def main(benchGen_root_path, execution_warmup, number_of_executions):
     programs_path = generatePrograms(benchGen_root_path)
 
     for program_path in programs_path:
-    	bench_gen_program
+    
         os.chdir(f"{benchGen_root_path}/src/gen/{program_path}")
         grammar_name = program_path.split("_")[-1].strip()
 
