@@ -8,7 +8,7 @@
 # Versão          : 1.0
 # ---------------------------------------------------------------------------------
 
-import os, sys, json
+import os, sys, json, csv
 
 # Versões dos compiladores
 GCC_VERSION   = 14
