@@ -60,8 +60,9 @@ RUN $ARTIFACT_DIR/venv/bin/python $ARTIFACT_DIR/src/artifact_2/asymptotic_behavi
 # Move os csvs para a pasta de análise 
 RUN mv /tmp/*.csv $ARTIFACT_DIR/data/
 
-# Inicia o jupyter lab
-CMD ["./venv/bin/jupyter notebook", "--ip=$JUPYTER_HOST", "--port=$JUPYTER_PORT", "--notebook-dir=$ARTIFACT_DIR/data/"]
-
 # Expõe a porta
 EXPOSE $JUPYTER_PORT
+
+# Inicia o jupyter lab
+CMD ["/benchgen-artifact/venv/bin/jupyter", "notebook", "--ip=0.0.0.0", "--port=8888", "--notebook-dir=/benchgen-artifact/data/", "--allow-root", "--NotebookApp.token=''", "--NotebookApp.password=''"]
+

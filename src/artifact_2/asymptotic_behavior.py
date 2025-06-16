@@ -48,7 +48,7 @@ csv_data = [['clang_time','opt_time','llc_time','bin_size','opt', 'iteration', '
 def generate_csv():
     """Gera o arquivo CSV com os dados coletados."""
     print(csv_data)
-    with open(f'/tmp/compilers_comparison.csv', 'w', newline='', encoding='utf-8') as file_csv:
+    with open(f'/tmp/asymptotic_behavior.csv', 'w', newline='', encoding='utf-8') as file_csv:
         writer = csv.writer(file_csv)
         writer.writerows(csv_data)
 
@@ -101,6 +101,8 @@ def get_opt_time(opt, grammar_id):
     """Executa opt e mede o tempo total de execução das otimizações."""
     os.system(f'{LINK} *.ll -o all.bc')
     os.system(f'{DIS} all.bc -o all.ll')
+    
+    opt = '-O3' if opt == '-O3 -ffast-math' or opt == '-Ofast' else opt
     os.system(OPT + " " + opt + " -time-passes all.ll -o optimized.ll 2>&1 | grep 'Total Execution Time' | head -n 1 | awk '{print $4}' > /tmp/opt_"+str(RUN)+"_" + grammar_id +".txt")
     return read_opt_llc_size(f'/tmp/opt_{RUN}_{grammar_id}.txt')
 
@@ -112,6 +114,7 @@ def get_binary_size(opt, grammar_id):
 
 def get_llc_time(opt, grammar_id):
     """Mede o tempo de execução do llc na geração de código nativo."""
+    opt = '-O3' if opt == '-O3 -ffast-math' or opt == '-Ofast' else opt
     os.system(LLC+" "+opt+" -time-passes  -o program.s optimized.ll 2>&1 | grep 'Total Execution Time' | head -n 1 | awk '{print $4}' > /tmp/llc_"+str(RUN)+"_" + grammar_id + ".txt")
     return read_opt_llc_size(f'/tmp/llc_{RUN}_{grammar_id}.txt')
 

@@ -29,6 +29,15 @@ iterations = [8, 10]
 EXECUTION_WARMUP = 2
 NUMBER_OF_EXECUTIONS = 2
 
+csv_data = [['binary_size','time_of_compilation','time_of_execution','opt','compiler','program','data_structure','iterations']]
+
+def generate_csv():
+    """Gera o arquivo CSV com os dados coletados."""
+    print(csv_data)
+    with open(f'/tmp/compilers_comparison.csv', 'w', newline='', encoding='utf-8') as file_csv:
+        writer = csv.writer(file_csv)
+        writer.writerows(csv_data)
+        
 def generatePrograms(benchGen_path):
     """
     Gera programas de benchmark a partir de regras e seeds utilizando o BenchGen.
@@ -142,6 +151,11 @@ def get_execution_time(grammar_id):
     os.system(f'hyperfine --show-output -w {EXECUTION_WARMUP} -r {NUMBER_OF_EXECUTIONS} "./a.out" --export-json /tmp/result_{NUMBER_OF_EXECUTIONS}_{grammar_id}.json')
     return read_time(f"/tmp/result_{NUMBER_OF_EXECUTIONS}_{grammar_id}.json")
 
+def get_info(file):
+    """Lê informações básicas de arquivos auxiliares."""
+    with open(file=file, mode='r', encoding='utf-8') as f:
+        return f.read().strip()
+
 def usage():
     """
     Exibe instruções de uso do script na linha de comando.
@@ -171,10 +185,18 @@ def main(benchGen_root_path, execution_warmup, number_of_executions):
             for opt in opts if compiler == f"gcc-{GCC_VERSION}" else opts + ["-Oz"]:
                 compiling_cmd = f'{compiler} {opt} src/*.c src/*.h'
 
-                get_compilation_time(compiling_cmd, grammar_name)
-                get_binary_size(grammar_name)
-                get_execution_time(grammar_name)
+                comp_time   = get_compilation_time(compiling_cmd, grammar_name)
+                binary_size = get_binary_size(grammar_name)
+                exec_time   = get_execution_time(grammar_name)
 
+                iteration      = get_info(f'{program_src_path}iteration.txt')
+                grammar        = get_info(f'{program_src_path}grammar.txt')
+                data_structure = get_info(f'{program_src_path}data_structure.txt')
+                
+                csv_data.append([binary_size, comp_time, exec_time, opt, compiler, grammar, data_structure, iteration])
+
+    generate_csv()
+    
 if __name__ == '__main__':
     if os.name == 'win32':
         raise Exception('This script is not compatible with Windows system!')
