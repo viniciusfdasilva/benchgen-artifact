@@ -190,9 +190,9 @@ def main(benchGen_root_path, execution_warmup, number_of_executions):
                 binary_size = get_binary_size(grammar_name)
                 exec_time   = get_execution_time(grammar_name)
 
-                iteration      = get_info(f'benchGen_root_path}/src/gen/{program_path}/iteration.txt')
-                grammar        = get_info(f'benchGen_root_path}/src/gen/{program_path}/grammar.txt')
-                data_structure = get_info(f'benchGen_root_path}/src/gen/{program_path}/data_structure.txt')
+                iteration      = get_info(f'{benchGen_root_path}/src/gen/{program_path}/iteration.txt')
+                grammar        = get_info(f'{benchGen_root_path}/src/gen/{program_path}/grammar.txt')
+                data_structure = get_info(f'{benchGen_root_path}/src/gen/{program_path}/data_structure.txt')
                 
                 csv_data.append([binary_size, comp_time, exec_time, opt, compiler, grammar, data_structure, iteration])
 
