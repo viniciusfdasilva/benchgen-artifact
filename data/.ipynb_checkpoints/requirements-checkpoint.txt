@@ -1,7 +1,0 @@
-pandas
-seaborn
-matplotlib
-adjust_text
-jupyter
-sklearn
-mpl_toolkits
