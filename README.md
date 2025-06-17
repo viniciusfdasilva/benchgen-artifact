@@ -163,6 +163,8 @@ Creating container:
 docker run --name lgen -p 8888:8888 -d lgen_experiments
 ```
 
+Use your browser to access http://localhost:8888 the Jupyter Notebook.
+
 ## Data Analysis
 
 ### 'Compilers Comparison' Experiment Data
